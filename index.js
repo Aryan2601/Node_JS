@@ -33,7 +33,7 @@ const server = http.createServer((req, res) => {
     } else if (pathName === '/product') {
         res.end('This is the Product');
     } else if (pathName === '/api') {
-        fs.readFile('./dev-data/data.json')
+        fs.readFile('$(__dirname)./dev-data/data.json')
 
         res.end('API')
     } else {
