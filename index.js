@@ -24,8 +24,26 @@ const http = require('http');
 // SERVER 
 
 const server = http.createServer((req, res) => {
-        res.end('Hello From The Server');
-    }) //here it will create a server
+
+
+    const pathName = req.url;
+
+    if (pathName === '/' || pathName === '/overview') {
+        res.end('This is the OverView');
+    } else if (pathName === '/product') {
+        res.end('This is the Product');
+    } else if (pathName === '/api') {
+        fs.readFile('./dev-data/data.json')
+
+        res.end('API')
+    } else {
+        res.writeHead(404, {
+            'Content-Type': 'text/html',
+            'my-own-header': 'hello-World'
+        });
+        res.end('<h1>Page not Found !!</h1>');
+    }
+}); //here it will create a server
 
 server.listen(8000, '127.0.0.1', () => {
     console.log('Listening to request on this port ')
